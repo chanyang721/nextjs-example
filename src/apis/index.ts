@@ -19,6 +19,7 @@ export async function api<T>(config: ApiConfig): Promise<T> {
 
   const headers: AxiosRequestConfig["headers"] = {
     // Authorization: `Bearer ${getAccessToken()}`,
+      'Content-Type': 'multipart/form-data',
   };
 
   try {
