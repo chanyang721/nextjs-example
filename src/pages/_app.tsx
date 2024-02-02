@@ -1,9 +1,9 @@
 import { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }: AppProps) {
-  const body = 'test'
 
+
+export default function App( { Component, pageProps }: AppProps ) {
   return (
-    <div>{body}</div>
+    <Component { ...pageProps } />
   )
 }
