@@ -8,14 +8,14 @@ import { useRouter } from 'next/navigation'
 
 
 
-export default function Login () {
+export default function Login() {
   const router = useRouter()
 
-  const formik = useFormik({
+  const formik = useFormik( {
     initialValues: {
-      email: '',
+      email   : '',
       password: '',
-      submit: null,
+      submit  : null,
     },
 
     // validationSchema: Yup.object({
@@ -27,52 +27,53 @@ export default function Login () {
     // }),
 
 
-    onSubmit: async (values, helpers) => {
+    onSubmit: async ( values, helpers ) => {
       try {
-        const token = await signIn({
+        const token = await signIn( {
           username: values.email,
           password: values.password,
-        })
-        if ( token.accessToken ) setAccessToken(token.accessToken);
-        router.push('/contract')
-      } catch (err: any) {
-        helpers.setStatus({ success: false })
-        helpers.setErrors({ submit: 'ID or Password is incorrect' })
-        helpers.setSubmitting(false)
+        } )
+        if ( token.accessToken ) setAccessToken( token.accessToken );
+        router.push( '/board' )
+      }
+      catch ( err: any ) {
+        helpers.setStatus( { success: false } )
+        helpers.setErrors( { submit: 'ID or Password is incorrect' } )
+        helpers.setSubmitting( false )
       }
     },
-  })
+  } )
 
   return (
     <>
       <Head>
-        <title>Login | PoET admin</title>
+        <title>Login</title>
       </Head>
       <AuthLayout>
         <Box
-          sx={{
+          sx={ {
             backgroundColor: 'background.paper',
-            flex: '1 1 auto',
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
+            flex           : '1 1 auto',
+            alignItems     : 'center',
+            display        : 'flex',
+            justifyContent : 'center',
+          } }
         >
           <Box
-            sx={{
+            sx={ {
               maxWidth: 550,
-              px: 3,
-              py: '100px',
-              width: '100%',
-            }}
+              px      : 3,
+              py      : '100px',
+              width   : '100%',
+            } }
           >
             <div>
-              <Stack spacing={1} sx={{ mb: 3 }}>
+              <Stack spacing={ 1 } sx={ { mb: 3 } }>
                 <Typography variant="h4">Login</Typography>
               </Stack>
 
-              <form noValidate onSubmit={formik.handleSubmit}>
-                <Stack spacing={3}>
+              <form noValidate onSubmit={ formik.handleSubmit }>
+                <Stack spacing={ 3 }>
                   <TextField
                     error={
                       !!(
@@ -87,10 +88,10 @@ export default function Login () {
                     }
                     label="Email Address"
                     name="email"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
+                    onBlur={ formik.handleBlur }
+                    onChange={ formik.handleChange }
                     type="email"
-                    value={formik.values.email}
+                    value={ formik.values.email }
                   />
                   <TextField
                     error={
@@ -106,32 +107,32 @@ export default function Login () {
                     }
                     label="Password"
                     name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
+                    onBlur={ formik.handleBlur }
+                    onChange={ formik.handleChange }
                     type="password"
-                    value={formik.values.password}
+                    value={ formik.values.password }
                   />
                 </Stack>
-                {formik.errors.submit && (
+                { formik.errors.submit && (
                   <Typography
                     color="error"
-                    sx={{ mt: 3 }}
+                    sx={ { mt: 3 } }
                     variant="body2"
                   >
-                    {formik.errors.submit}
+                    { formik.errors.submit }
                   </Typography>
-                )}
+                ) }
                 <Button
                   fullWidth
                   size="large"
-                  sx={{ mt: 3 }}
+                  sx={ { mt: 3 } }
                   type="submit"
                   variant="contained"
                   color="warning"
                 >
                   Continue
                 </Button>
-                <Alert severity="info" sx={{ mt: 3 }}>
+                <Alert severity="info" sx={ { mt: 3 } }>
                   <div>
                     Inquiry about Login <b>chanyang721@gmail.com</b>
                   </div>
